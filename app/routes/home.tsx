@@ -39,15 +39,6 @@ export default function Home() {
     console.log(payload.message)
   }
 
-  const [checkout, setCheckout] = useState<any>(null);
-
-  useEffect(() => {
-    const check = (
-      <PayjpCheckoutFunc {...payjpCheckoutProps} />
-    );
-    setCheckout(check);
-  }, []);
-
   return (
     <div className="payjpButtonArea">
       <div>function component</div>
