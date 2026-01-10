@@ -1,7 +1,6 @@
 import type { Route } from "./+types/home";
 import { Link, useLoaderData } from 'react-router';
-// @ts-ignore
-import PayjpCheckoutClass from "../class/payjp_checkout_class";
+import PayjpCheckout from "../components/class/payjp-checkout";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -43,7 +42,7 @@ export default function Home() {
       <div>class component</div>
       <div><Link to="/">function component</Link></div>
       {/* <div><a href="/func">function component</a></div> */}
-      <PayjpCheckoutClass {...payjpCheckoutProps} />
+      <PayjpCheckout {...payjpCheckoutProps} />
     </div>
   );
 }
