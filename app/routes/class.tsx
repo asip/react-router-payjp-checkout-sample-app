@@ -1,12 +1,13 @@
-import type { Route } from "./+types/home";
-import { Link, useLoaderData } from 'react-router';
-import PayjpCheckout from "../components/class/payjp-checkout";
+import type { Route } from "./+types/home"
+import { Link, useLoaderData } from 'react-router'
+import PayjpCheckout from "../components/class/payjp-checkout"
+import type { PayjpCheckoutPayload, PayjpCheckoutErrorPayload } from "../components/class/payjp-checkout"
 
 export function meta({}: Route.MetaArgs) {
   return [
     { title: "React Router PAY.JP Sample App" },
     { name: "description", content: "Welcome to Class Component!" },
-  ];
+  ]
 }
 
 export async function loader(_: Route.LoaderArgs) {
@@ -14,11 +15,11 @@ export async function loader(_: Route.LoaderArgs) {
     env: {
       PAYJP_PUBLIC_KEY: process.env.PAYJP_PUBLIC_KEY || "",
     },
-  };
+  }
 }
 
 export default function Home() {
-  const data = useLoaderData<Awaited<ReturnType<typeof loader>>>();
+  const data = useLoaderData<Awaited<ReturnType<typeof loader>>>()
 
   const payjpCheckoutProps = {
     dataKey: data.env.PAYJP_PUBLIC_KEY,
@@ -28,12 +29,12 @@ export default function Home() {
     onFailedHandler: onFailed,
   }
 
-  function onCreated(payload: any) {
+  function onCreated(payload: PayjpCheckoutPayload) {
     //console.log(payload)
     console.log(payload.token)
   }
 
-  function onFailed(payload: any) {
+  function onFailed(payload: PayjpCheckoutErrorPayload) {
     console.log(payload.message)
   }
 
@@ -44,5 +45,5 @@ export default function Home() {
       {/* <div><a href="/func">function component</a></div> */}
       <PayjpCheckout {...payjpCheckoutProps} />
     </div>
-  );
+  )
 }
